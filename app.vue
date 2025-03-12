@@ -1,20 +1,9 @@
 <template>
-  <div class="min-h-screen flex flex-col bg-white">
+  <div class="min-h-screen bg-white">
     <Header />
-    <main class="flex-grow container mx-auto px-4 py-8">
+    <main>
       <NuxtPage />
     </main>
-    <footer class="bg-gray-50 border-t">
-      <div class="container mx-auto px-4 py-6 text-sm text-gray-600">
-        <div class="flex justify-between items-center">
-          <p>© 2024 Nele Schaal</p>
-          <div class="space-x-4">
-            <a href="mailto:your.email@example.com" class="hover:text-blue-700 transition">Email</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-blue-700 transition">LinkedIn</a>
-          </div>
-        </div>
-      </div>
-    </footer>
   </div>
 </template>
 

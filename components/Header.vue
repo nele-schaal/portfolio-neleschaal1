@@ -14,19 +14,20 @@
 </style> -->
 
 <template>
-  <header class="bg-white text-black shadow-md">
-    <nav class="container mx-auto flex justify-between items-center p-4">
-      <NuxtLink to="/" class="text-xl font-medium text-blue-700">nele schaal</NuxtLink>
-      <div class="space-x-6">
-        <NuxtLink to="/" class="hover:text-blue-700 transition">work</NuxtLink>
-        <NuxtLink to="/about" class="hover:text-blue-700 transition">about</NuxtLink>
+  <header class="py-8">
+    <nav class="container mx-auto px-4 flex justify-between items-center">
+      <div class="space-x-2">
+        <NuxtLink to="/" class="hover:opacity-70 transition">work</NuxtLink>
+        <span class="text-gray-400">//</span>
+        <NuxtLink to="/about" class="hover:opacity-70 transition">about</NuxtLink>
       </div>
+      <NuxtLink to="/" class="text-center font-bold">nele schaal</NuxtLink>
+      <NuxtLink to="/contact" class="hover:opacity-70 transition">contact me</NuxtLink>
     </nav>
   </header>
 </template>
 
-<script lang="ts" setup>
-
+<script setup lang="ts">
 </script>
 
 <style scoped>
