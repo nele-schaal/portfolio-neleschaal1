@@ -20,13 +20,18 @@
     </div>
 
     <!-- Text Section -->
-    <div class="flex-grow flex flex-col items-center justify-center text-center px-4 pointer-events-none">
-      <p class="text-7xl font-bold mb-2">I design, question, prototype, and play.</p>
-      <p class="text-2xl font-bold">Always searching for better interactions.</p>
+    <div class="flex-grow flex flex-col items-center justify-center text-center px-4 pointer-events-none mt-[-120px]">
+      <div class="max-w-4xl">
+        <h1 class="text-7xl font-bold mb-2">
+          I design, question,<br>
+          prototype, and play.
+        </h1>
+        <p class="text-2xl font-bold">Always searching for better interactions.</p>
+      </div>
     </div>
 
     <!-- Scroll Down Arrow -->
-    <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2">
+    <div class="absolute bottom-28 left-1/2 transform -translate-x-1/2">
       <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
       </svg>
@@ -34,14 +39,22 @@
   </div>
 
   <!-- Work Section -->
-  <section class="pt-24 pb-16 bg-white border-t border-gray-200">
+  <section class="pt-24 pb-16 bg-white">
     <div class="container mx-auto px-4">
       <h2 class="text-xl font-normal mb-10">work</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div v-for="project in projects" :key="project.title" class="relative">
-          <div class="aspect-[4/3] bg-gray-200 rounded-lg"></div>
-          <p class="absolute bottom-4 left-4 text-black">{{ project.title }}</p>
-        </div>
+        <NuxtLink 
+          v-for="project in projects" 
+          :key="project.title" 
+          :to="`/work/${project.title.toLowerCase()}`" 
+          class="relative group cursor-pointer"
+        >
+          <div v-if="project.image" class="aspect-[4/3] rounded-lg overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
+            <img :src="project.image" :alt="project.title" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+          </div>
+          <div v-else class="aspect-[4/3] bg-gray-200 rounded-lg transition-transform duration-300 group-hover:scale-[1.02]"></div>
+          <p class="absolute bottom-4 left-4 text-black transition-opacity duration-300 opacity-0 group-hover:opacity-100">{{ project.title }}</p>
+        </NuxtLink>
       </div>
     </div>
   </section>
@@ -49,6 +62,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
+
+// Import the images directly for better asset handling
+import pulseImage from '~/assets/pulse.png';
+import alexImage from '~/assets/alex.png';
 
 const canvas = ref<HTMLCanvasElement | null>(null);
 const customCursor = ref<HTMLElement | null>(null);
@@ -76,10 +93,9 @@ const shouldClearPath = ref(false);
 const shouldShowCursor = ref(true);
 
 const projects = [
-  { title: "alex" },
-  { title: "Pulse" },
-  { title: "Sense" },
-  { title: "Project 4" }
+  { title: "alex", image: alexImage },
+  { title: "Pulse", image: pulseImage },
+  { title: "Sense" }
 ];
 
 // Simple drawing with explicit management of the clear timer
@@ -119,19 +135,19 @@ function stopDrawing() {
   
   isDrawing.value = false;
   
-  // Schedule clearing of the canvas in 3 seconds
+  // Schedule clearing of the canvas in 1.5 seconds
   if (clearTimer) {
     clearTimeout(clearTimer);
   }
   
-  console.log('Scheduling canvas clearing in 3 seconds');
+  console.log('Scheduling canvas clearing in 2 seconds');
   clearTimer = setTimeout(() => {
     console.log('Clearing canvas now');
     if (ctx && canvas.value) {
       ctx.clearRect(0, 0, canvas.value.width, canvas.value.height);
     }
     clearTimer = undefined;
-  }, 3000);
+  }, 1500);
 }
 
 function resizeCanvas() {
