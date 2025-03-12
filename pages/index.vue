@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col relative">
+  <div class="min-h-screen flex flex-col relative bg-white">
     <!-- Drawing Canvas -->
     <canvas
       ref="canvas"
@@ -22,6 +22,13 @@
       <p class="text-7xl font-bold mb-2">I design, question, prototype, and play.</p>
       <p class="text-2xl font-bold">Always searching for better interactions.</p>
     </div>
+
+    <!-- Scroll Down Arrow -->
+    <div class="absolute bottom-30 left-1/2 transform -translate-x-1/2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
   </div>
 </template>
 
@@ -34,8 +41,12 @@ let ctx: CanvasRenderingContext2D | null = null;
 let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
+let clearTimeoutId: number | null = null;
 
 function startDrawing(e: MouseEvent) {
+  if (clearTimeoutId !== null) {
+    clearTimeout(clearTimeoutId);
+  }
   isDrawing = true;
   const rect = canvas.value?.getBoundingClientRect();
   if (rect) {
@@ -65,6 +76,10 @@ function draw(e: MouseEvent) {
 
 function stopDrawing() {
   isDrawing = false;
+  if (clearTimeoutId !== null) {
+    clearTimeout(clearTimeoutId);
+  }
+  clearTimeoutId = window.setTimeout(clearCanvas, 4000);
 }
 
 function resizeCanvas() {
@@ -85,6 +100,9 @@ function toggleDrawing(e: MouseEvent) {
   if (isDrawing) {
     stopDrawing();
   } else {
+    if (clearTimeoutId !== null) {
+      clearTimeout(clearTimeoutId);
+    }
     clearCanvas();
   }
 }
