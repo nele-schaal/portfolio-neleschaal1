@@ -8,7 +8,7 @@
     ></canvas>
 
     <!-- Custom Cursor -->
-    <div v-show="shouldShowCursor" ref="customCursor" class="custom-cursor">
+    <div v-show="shouldShowCursor && !isHoveringHeaderLink" ref="customCursor" class="custom-cursor">
       <div class="flex items-center">
         <div class="w-2 h-2 bg-black rounded-full mr-1"></div>
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -91,6 +91,8 @@ const shouldClearPath = ref(false);
 
 // Add shouldShowCursor to track visibility
 const shouldShowCursor = ref(true);
+// Track when hovering over header links
+const isHoveringHeaderLink = ref(false);
 
 const projects = [
   { title: "alex", image: alexImage },
@@ -100,7 +102,7 @@ const projects = [
 
 // Simple drawing with explicit management of the clear timer
 function startDrawing(e: MouseEvent) {
-  if (!shouldShowCursor.value || !canvas.value || !ctx) return;
+  if (!shouldShowCursor.value || isHoveringHeaderLink.value || !canvas.value || !ctx) return;
   
   // Cancel any pending clear operation
   if (clearTimer) {
@@ -194,6 +196,21 @@ function handleScroll() {
   }
 }
 
+// Add event handlers for header hover
+function setupHeaderHoverListeners() {
+  const header = document.querySelector('header');
+  
+  if (header) {
+    header.addEventListener('mouseenter', () => {
+      isHoveringHeaderLink.value = true;
+    });
+    
+    header.addEventListener('mouseleave', () => {
+      isHoveringHeaderLink.value = false;
+    });
+  }
+}
+
 onMounted(() => {
   if (!canvas.value) return;
   
@@ -209,6 +226,9 @@ onMounted(() => {
   window.addEventListener('resize', resizeCanvas);
   window.addEventListener('mousemove', updateCursor);
   window.addEventListener('scroll', handleScroll);
+  
+  // Setup header hover listeners after a short delay to ensure DOM is ready
+  setTimeout(setupHeaderHoverListeners, 500);
 });
 
 onUnmounted(() => {
@@ -225,6 +245,13 @@ onUnmounted(() => {
   
   if (clearTimer) {
     clearTimeout(clearTimer);
+  }
+  
+  // Clean up header hover listeners
+  const header = document.querySelector('header');
+  if (header) {
+    header.removeEventListener('mouseenter', () => {});
+    header.removeEventListener('mouseleave', () => {});
   }
 });
 </script>
