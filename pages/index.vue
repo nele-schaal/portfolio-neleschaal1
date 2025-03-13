@@ -26,7 +26,6 @@
           I design, question,<br>
           prototype, and play.
         </h1>
-        <p class="text-2xl font-bold">Always searching for better interactions.</p>
       </div>
     </div>
 
