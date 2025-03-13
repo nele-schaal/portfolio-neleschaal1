@@ -172,7 +172,7 @@ function resizeCanvas() {
   ctx.lineCap = 'round';
   ctx.lineJoin = 'round';
   ctx.strokeStyle = '#00008b';
-  ctx.lineWidth = 2;
+  ctx.lineWidth = 4;
 }
 
 function updateCursor(e: MouseEvent) {
