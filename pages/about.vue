@@ -9,10 +9,7 @@
       <!-- Bio Content -->
       <div class="space-y-8">
         <p class="text-lg">
-          I am studying (digital) product design at the University of Applied Sciences Schwäbisch Gmünd.
-        </p>
-        <p class="text-lg">
-          I am currently looking for an internship!
+          ..
         </p>
       </div>
     </div>

@@ -11,10 +11,7 @@
     <div v-show="shouldShowCursor && !isHoveringHeaderLink" ref="customCursor" class="custom-cursor">
       <div class="flex items-center">
         <div class="w-2 h-2 bg-black rounded-full mr-1"></div>
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20h9" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.5 3.5l4 4L7 21H3v-4L16.5 3.5z" />
-        </svg>
+        <img :src="pencilIcon" alt="Pencil" class="w-4 h-4">
         <span class="text-sm ml-1">draw</span>
       </div>
     </div>
@@ -31,9 +28,7 @@
 
     <!-- Scroll Down Arrow -->
     <div class="absolute bottom-28 left-1/2 transform -translate-x-1/2">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-      </svg>
+      <img :src="arrowIcon" alt="Scroll Down" class="w-6 h-6 animate-bounce">
     </div>
   </div>
 
@@ -65,6 +60,9 @@ import { ref, onMounted, onUnmounted } from 'vue';
 // Import the images directly for better asset handling
 import pulseImage from '~/assets/pulse.png';
 import alexImage from '~/assets/alex.png';
+// Import your custom SVG icons (replace with your actual filenames)
+import pencilIcon from '~/assets/pencil-icon.svg'; // Your custom pencil icon as SVG
+import arrowIcon from '~/assets/arrow-icon.svg';   // Your custom arrow icon as SVG
 
 const canvas = ref<HTMLCanvasElement | null>(null);
 const customCursor = ref<HTMLElement | null>(null);
