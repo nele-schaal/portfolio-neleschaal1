@@ -1,4 +1,7 @@
 <template>
+  <Head>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+  </Head>
   <div class="min-h-screen bg-white flex flex-col">
     <main class="flex-grow">
       <NuxtPage />
