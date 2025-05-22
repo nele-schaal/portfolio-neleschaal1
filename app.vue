@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-white flex flex-col">
     <Header v-if="!isProjectPage" />
-    <main>
+    <main class="flex-grow">
       <NuxtPage />
     </main>
   </div>
@@ -22,7 +22,13 @@ const isProjectPage = computed(() => {
 
 body {
   font-family: 'Inter', sans-serif;
+  letter-spacing: -0.04em; /* -4% letter spacing */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Apply letter spacing to all text elements for consistency */
+h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, label {
+  letter-spacing: -0.04em;
 }
 </style>

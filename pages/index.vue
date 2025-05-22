@@ -1,25 +1,26 @@
 <template>
   <div class="min-h-screen flex flex-col relative bg-white">
-    <!-- Drawing Canvas -->
+    <TheHeader />
+
+    <!-- Drawing Canvas (hidden on mobile) -->
     <canvas
       ref="canvas"
-      class="absolute inset-0 w-full h-full"
+      class="absolute inset-0 w-full h-full hidden sm:block"
       style="touch-action: none;"
     ></canvas>
 
-    <!-- Custom Cursor -->
-    <div v-show="shouldShowCursor && !isHoveringHeaderLink" ref="customCursor" class="custom-cursor">
+    <!-- Custom Cursor (hidden on mobile) -->
+    <div v-show="shouldShowCursor && !isHoveringHeaderLink && !isHoveringHeader" ref="customCursor" class="custom-cursor hidden sm:flex">
       <div class="flex items-center">
-        <div class="w-2 h-2 bg-black rounded-full mr-1"></div>
         <img :src="pencilIcon" alt="Pencil" class="w-4 h-4">
         <span class="text-sm ml-1">draw</span>
       </div>
     </div>
 
     <!-- Text Section -->
-    <div class="flex-grow flex flex-col items-center justify-center text-center px-4 pointer-events-none mt-[-120px]">
+    <div class="flex-grow flex flex-col items-center justify-center text-center px-4 pointer-events-none mt-[-15vh]">
       <div class="max-w-4xl">
-        <h1 class="text-7xl font-bold mb-2">
+        <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-2">
           I design, question,<br>
           prototype, and play.
         </h1>
@@ -27,16 +28,15 @@
     </div>
 
     <!-- Scroll Down Arrow -->
-    <div class="absolute bottom-28 left-1/2 transform -translate-x-1/2">
-      <img :src="arrowIcon" alt="Scroll Down" class="w-6 h-6 animate-bounce">
+    <div class="absolute bottom-28 left-1/2 transform -translate-x-1/2 cursor-pointer" @click="scrollToWork">
+      <img :src="arrowIcon" alt="Scroll Down" class="w-8 h-8 sm:w-10 sm:h-10 animate-bounce">
     </div>
   </div>
 
   <!-- Work Section -->
-  <section class="pt-24 pb-16 bg-white">
-    <div class="container mx-auto px-4">
-      <h2 class="text-xl font-normal mb-10">work</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <section id="work" class="pt-8 pb-16 bg-white opacity-0 translate-y-10 transition-all duration-700 ease-out scroll-mt-24" ref="workSection">
+    <div class="max-w-[95%] mx-auto px-2 mb-2">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-0">
         <NuxtLink 
           v-for="project in projects" 
           :key="project.title" 
@@ -47,19 +47,25 @@
             <img :src="project.image" :alt="project.title" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
           </div>
           <div v-else class="aspect-[4/3] bg-gray-200 rounded-lg transition-transform duration-300 group-hover:scale-[1.02]"></div>
-          <p class="absolute bottom-4 left-4 text-black transition-opacity duration-300 opacity-0 group-hover:opacity-100">{{ project.title }}</p>
+          <p class="absolute bottom-4 left-4 text-black transition-opacity duration-300 opacity-0 group-hover:opacity-100 text-xl sm:text-2xl">{{ project.title }}</p>
         </NuxtLink>
       </div>
     </div>
   </section>
+  
+  <!-- Footer -->
+  <TheFooter />
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
+import TheFooter from '~/components/TheFooter.vue';
 
 // Import the images directly for better asset handling
-import pulseImage from '~/assets/pulse.png';
-import alexImage from '~/assets/alex.png';
+import pulseImage from '~/assets/pulse/pulse.png';
+import alexImage from '~/assets/alex/alex.png';
+import senseImage from '~/assets/sense/sense.png';
+import soundPlotterImage from '~/assets/soundplotter/soundplotter.png';
 // Import your custom SVG icons (replace with your actual filenames)
 import pencilIcon from '~/assets/pencil-icon.svg'; // Your custom pencil icon as SVG
 import arrowIcon from '~/assets/arrow-icon.svg';   // Your custom arrow icon as SVG
@@ -90,12 +96,17 @@ const shouldClearPath = ref(false);
 const shouldShowCursor = ref(true);
 // Track when hovering over header links
 const isHoveringHeaderLink = ref(false);
+// Add isHoveringHeader ref
+const isHoveringHeader = ref(false);
 
 const projects = [
   { title: "alex", image: alexImage },
-  { title: "Pulse", image: pulseImage },
-  { title: "Sense" }
+  { title: "Sense", image: senseImage },
+  { title: "Sound Plotter", image: soundPlotterImage },
+  { title: "Pulse", image: pulseImage }
 ];
+
+const workSection = ref<HTMLElement | null>(null);
 
 // Simple drawing with explicit management of the clear timer
 function startDrawing(e: MouseEvent) {
@@ -176,35 +187,43 @@ function resizeCanvas() {
 }
 
 function updateCursor(e: MouseEvent) {
-  if (shouldShowCursor.value) {
-    document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
-    document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
+  if (!shouldShowCursor.value) return;
+  
+  // Check if mouse is in header area (top 92px of the page)
+  if (e.clientY <= 92) {
+    isHoveringHeader.value = true;
+    isHoveringHeaderLink.value = true;
+  } else {
+    isHoveringHeader.value = false;
+    isHoveringHeaderLink.value = false;
   }
+  
+  document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
+  document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
 }
 
 function handleScroll() {
   const scrollPosition = window.scrollY;
   const windowHeight = window.innerHeight;
-  
-  shouldShowCursor.value = scrollPosition < windowHeight * 0.8;
+  // Make the cursor disappear earlier, right when reaching the arrow icon
+  // Lowering threshold significantly to ensure it disappears at the arrow
+  shouldShowCursor.value = scrollPosition < windowHeight * 0.35;
   
   if (!shouldShowCursor.value && isDrawing.value) {
     stopDrawing();
   }
 }
 
-// Add event handlers for header hover
+// Update header hover handlers
 function setupHeaderHoverListeners() {
-  const header = document.querySelector('header');
-  
-  if (header) {
-    header.addEventListener('mouseenter', () => {
-      isHoveringHeaderLink.value = true;
-    });
-    
-    header.addEventListener('mouseleave', () => {
-      isHoveringHeaderLink.value = false;
-    });
+  // Remove the old event listeners since we're now handling this in updateCursor
+  return;
+}
+
+function scrollToWork() {
+  const workSection = document.getElementById('work');
+  if (workSection) {
+    workSection.scrollIntoView({ behavior: 'smooth' });
   }
 }
 
@@ -226,6 +245,24 @@ onMounted(() => {
   
   // Setup header hover listeners after a short delay to ensure DOM is ready
   setTimeout(setupHeaderHoverListeners, 500);
+
+  // Set up Intersection Observer for work section animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const section = entry.target as HTMLElement;
+        section.style.opacity = '1';
+        section.style.transform = 'translateY(0)';
+        observer.unobserve(section); // Stop observing once animation is triggered
+      }
+    });
+  }, {
+    threshold: 0.1 // Trigger when 10% of the section is visible
+  });
+
+  if (workSection.value) {
+    observer.observe(workSection.value);
+  }
 });
 
 onUnmounted(() => {
@@ -247,8 +284,14 @@ onUnmounted(() => {
   // Clean up header hover listeners
   const header = document.querySelector('header');
   if (header) {
-    header.removeEventListener('mouseenter', () => {});
-    header.removeEventListener('mouseleave', () => {});
+    header.removeEventListener('mouseenter', () => {
+      isHoveringHeader.value = true;
+      isHoveringHeaderLink.value = true;
+    });
+    header.removeEventListener('mouseleave', () => {
+      isHoveringHeader.value = false;
+      isHoveringHeaderLink.value = false;
+    });
   }
 });
 </script>
@@ -272,5 +315,24 @@ canvas {
   transform: translate(calc(var(--cursor-x) + 15px), calc(var(--cursor-y)));
   display: flex;
   align-items: center;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1.5px;
+  bottom: 2px;
+  left: 0;
+  background-color: black;
+  transition: width 0.2s ease-in-out;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 </style>

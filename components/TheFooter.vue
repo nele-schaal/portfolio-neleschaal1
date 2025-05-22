@@ -1,0 +1,29 @@
+<template>
+  <footer class="py-8 bg-white relative z-0 mt-8">
+    <div class="max-w-[95%] mx-auto px-2">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-4">
+        <div class="text-base text-gray-500">
+          © Nele Schaal 2025
+        </div>
+        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6 text-base text-gray-500 items-center">
+          <a href="https://www.linkedin.com/in/nele-schaal/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 transition-colors">
+            LinkedIn
+          </a>
+          <NuxtLink to="/imprint" class="hover:text-gray-900 transition-colors">
+            {{ imprintLabel || 'Imprint' }}
+          </NuxtLink>
+        </div>
+      </div>
+    </div>
+  </footer>
+</template>
+
+<script setup lang="ts">
+const props = defineProps({
+  imprintLabel: { type: String, default: 'Imprint' }
+});
+</script>
+
+<style scoped>
+/* Any footer-specific styles */
+</style> 
