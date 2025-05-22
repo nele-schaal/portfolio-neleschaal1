@@ -5,6 +5,9 @@
         <div class="text-base text-gray-500">
           © Nele Schaal 2025
         </div>
+        <div class="text-base text-gray-500 hidden sm:block text-center flex-1">
+          Vibecoded
+        </div>
         <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-6 text-base text-gray-500 items-center">
           <a href="https://www.linkedin.com/in/nele-schaal/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 transition-colors">
             LinkedIn
@@ -12,6 +15,9 @@
           <NuxtLink to="/imprint" class="hover:text-gray-900 transition-colors">
             {{ imprintLabel || 'Imprint' }}
           </NuxtLink>
+        </div>
+        <div class="text-base text-gray-500 sm:hidden text-center mt-2">
+          Vibecoded
         </div>
       </div>
     </div>
