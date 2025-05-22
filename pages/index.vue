@@ -18,7 +18,7 @@
     </div>
 
     <!-- Text Section -->
-    <div class="flex-grow flex flex-col items-center justify-center text-center px-4 pointer-events-none mt-[-15vh]">
+    <div class="flex flex-col items-center justify-center text-center px-4 pointer-events-none mt-8" style="min-height: calc(100vh - 92px);">
       <div class="max-w-4xl">
         <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-2">
           I design, question,<br>
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Scroll Down Arrow -->
-    <div class="absolute bottom-28 left-1/2 transform -translate-x-1/2 cursor-pointer" @click="scrollToWork">
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer" @click="scrollToWork">
       <img :src="arrowIcon" alt="Scroll Down" class="w-8 h-8 sm:w-10 sm:h-10 animate-bounce">
     </div>
   </div>
