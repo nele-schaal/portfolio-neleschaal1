@@ -894,7 +894,7 @@ async function navigateBack(event: Event) {
   width: 100%;
   display: block;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); */
 }
 
 @media (max-width: 768px) {
@@ -909,6 +909,7 @@ async function navigateBack(event: Event) {
   width: 200px;
   height: 200px;
   transition: all 0.3s ease;
+  /* box-shadow: none !important; */
 }
 
 .emotion-video:hover {
