@@ -11,7 +11,6 @@
         </NuxtLink>
       </div>
     </header>
-    
     <main class="flex-grow pt-8 pb-16">
       <div class="max-w-[95%] mx-auto px-2">
         <div class="max-w-3xl space-y-12">

@@ -1,6 +1,5 @@
 <template>
   <div class="min-h-screen bg-white flex flex-col">
-    <Header v-if="!isProjectPage" />
     <main class="flex-grow">
       <NuxtPage />
     </main>
