@@ -10,7 +10,7 @@
     ></canvas>
 
     <!-- Custom Cursor (hidden on mobile) -->
-    <div v-show="shouldShowCursor && !isHoveringHeaderLink && !isHoveringHeader" ref="customCursor" class="custom-cursor hidden sm:flex">
+    <div v-show="shouldShowCursor && !isHoveringHeaderLink && !isHoveringHeader && !isHoveringChevron" ref="customCursor" class="custom-cursor hidden sm:flex">
       <div class="flex items-center">
         <img :src="pencilIcon" alt="Pencil" class="w-4 h-4">
         <span class="text-sm ml-1">draw</span>
@@ -28,7 +28,10 @@
     </div>
 
     <!-- Scroll Down Arrow -->
-    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer" @click="scrollToWork">
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer"
+         @click="scrollToWork"
+         @mouseenter="isHoveringChevron = true"
+         @mouseleave="isHoveringChevron = false">
       <img :src="arrowIcon" alt="Scroll Down" class="w-8 h-8 sm:w-10 sm:h-10 animate-bounce">
     </div>
   </div>
@@ -98,6 +101,7 @@ const shouldShowCursor = ref(true);
 const isHoveringHeaderLink = ref(false);
 // Add isHoveringHeader ref
 const isHoveringHeader = ref(false);
+const isHoveringChevron = ref(false);
 
 const projects = [
   { title: "alex", image: alexImage },
