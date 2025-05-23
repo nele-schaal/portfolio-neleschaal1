@@ -12,8 +12,9 @@
           <a href="https://www.linkedin.com/in/nele-schaal/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-900 transition-colors">
             LinkedIn
           </a>
-          <NuxtLink to="/imprint" class="hover:text-gray-900 transition-colors">
-            {{ imprintLabel || 'Imprint' }}
+          <span v-if="isImprint" class="text-gray-900 cursor-default">Imprint</span>
+          <NuxtLink v-else to="/imprint" class="hover:text-gray-900 transition-colors">
+            Imprint
           </NuxtLink>
         </div>
         <div class="text-base text-gray-500 sm:hidden text-center mt-2">
@@ -25,9 +26,12 @@
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router';
 const props = defineProps({
   imprintLabel: { type: String, default: 'Imprint' }
 });
+const route = useRoute();
+const isImprint = route.path === '/imprint';
 </script>
 
 <style scoped>
