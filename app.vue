@@ -1,6 +1,8 @@
 <template>
   <Head>
     <title>Nele Schaal</title>
+    <meta name="description" content="Portfolio of Nele Schaal" />
+    <link rel="icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" href="/favicon/favicon-96x96-new.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon/favicon-new.svg" />
     <link rel="shortcut icon" href="/favicon/favicon-new.ico" />
