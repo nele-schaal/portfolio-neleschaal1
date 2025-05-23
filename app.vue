@@ -1,5 +1,6 @@
 <template>
   <Head>
+    <title>Nele Schaal</title>
     <link rel="icon" type="image/x-icon" href="/favicon-blue.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-blue-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-blue-16x16.png" />
