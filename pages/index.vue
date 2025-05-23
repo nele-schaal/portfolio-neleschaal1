@@ -18,7 +18,7 @@
     </div>
 
     <!-- Text Section -->
-    <div class="flex flex-col items-center justify-center text-center px-4 pointer-events-none mt-8" style="min-height: calc(100vh - 92px);">
+    <div class="flex flex-col items-center justify-center text-center px-4 pointer-events-none mt-10" style="min-height: calc(100vh - 92px);">
       <div class="max-w-4xl">
         <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-2">
           I design, question,<br>
