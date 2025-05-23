@@ -1,13 +1,7 @@
 <template>
   <Head>
     <title>Nele Schaal</title>
-    <link rel="icon" type="image/x-icon" href="/favicon-blue.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-blue-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-blue-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-blue.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-blue-192x192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-blue-512x512.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </Head>
   <div class="min-h-screen bg-white flex flex-col">
     <main class="flex-grow">
