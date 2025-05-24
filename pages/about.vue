@@ -2,7 +2,7 @@
   <div class="min-h-screen flex flex-col bg-white">
     <TheHeader />
     
-    <main class="flex-grow pb-16 pt-20">
+    <main class="flex-grow pb-16 pt-22">
       <div class="max-w-[95%] mx-auto px-2">
         <div class="container mx-auto px-2 mt-12">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
