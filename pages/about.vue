@@ -20,7 +20,7 @@
               <p class="text-base sm:text-lg">
                 I'm an Interaction Design student at the University of Applied<br />Sciences in Schwäbisch Gmünd and currently looking for an <br /> internship.<br /><br />
                 Driven by curiosity and a deep interest in how humans and <br />technology connect, I enjoy bringing new ideas to life through <br /> thoughtful concepts and hands-on prototypes.<br>
-                I find inspiration in nature, conversations, books, and everyday <br />interactions. I love diving deep into topics and exploring how we <br />can shape the future through the connection of technology and <br />design.
+                I find inspiration in nature, conversations, books, and everyday <br />interactions, and I love diving deep into topics and exploring how <br /> we can shape the future through the connection of technology <br /> and design, creating meaningful, user-centered solutions that <br />respond to real needs.
               </p>
             </div>
           </div>
