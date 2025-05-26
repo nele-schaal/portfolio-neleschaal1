@@ -65,10 +65,10 @@ import { ref, onMounted, onUnmounted } from 'vue';
 import TheFooter from '~/components/TheFooter.vue';
 
 // Import the images directly for better asset handling
-import pulseImage from '~/assets/pulse/pulse.png';
+import pulseImage from '~/assets/pulse/pulse.jpg';
 import alexImage from '~/assets/alex/alex.png';
 import senseImage from '~/assets/sense/sense.png';
-import soundPlotterImage from '~/assets/soundplotter/soundplotter.png';
+import soundPlotterImage from '~/assets/soundplotter/soundplotter.jpg';
 // Import your custom SVG icons (replace with your actual filenames)
 import pencilIcon from '~/assets/pencil-icon.svg'; // Your custom pencil icon as SVG
 import arrowIcon from '~/assets/arrow-icon.svg';   // Your custom arrow icon as SVG

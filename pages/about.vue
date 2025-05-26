@@ -9,7 +9,7 @@
             <!-- Profile Image -->
             <div class="aspect-square rounded-lg overflow-hidden max-w-xs mx-auto md:max-w-full">
               <img 
-                src="~/assets/ich.png" 
+                src="~/assets/ich.jpg" 
                 alt="Profile picture" 
                 class="w-full h-full object-contain"
               />
