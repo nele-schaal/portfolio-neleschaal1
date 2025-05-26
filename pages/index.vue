@@ -2,18 +2,18 @@
   <div class="min-h-screen flex flex-col relative bg-white">
     <TheHeader />
 
-    <!-- Drawing Canvas (hidden on mobile) -->
-    <canvas
-      ref="canvas"
-      class="absolute inset-0 w-full h-full hidden sm:block"
-      style="touch-action: none;"
-    ></canvas>
-
-    <!-- Custom Cursor (hidden on mobile) -->
-    <div v-show="shouldShowCursor && !isHoveringHeaderLink && !isHoveringHeader && !isHoveringChevron" ref="customCursor" class="custom-cursor hidden sm:flex">
-      <div class="flex items-center">
-        <img :src="pencilIcon" alt="Pencil" class="w-4 h-4">
-        <span class="text-sm ml-1">draw</span>
+    <!-- Drawing Canvas and Custom Cursor: Only on desktop (sm and up) -->
+    <div class="hidden sm:block">
+      <canvas
+        ref="canvas"
+        class="absolute inset-0 w-full h-full"
+        style="touch-action: none;"
+      ></canvas>
+      <div v-show="shouldShowCursor && !isHoveringHeaderLink && !isHoveringHeader && !isHoveringChevron" ref="customCursor" class="custom-cursor flex">
+        <div class="flex items-center">
+          <img :src="pencilIcon" alt="Pencil" class="w-4 h-4">
+          <span class="text-sm ml-1">draw</span>
+        </div>
       </div>
     </div>
 
@@ -37,7 +37,7 @@
   </div>
 
   <!-- Work Section -->
-  <section id="work" class="pt-8 pb-16 bg-white opacity-0 translate-y-10 transition-all duration-700 ease-out scroll-mt-24" ref="workSection">
+  <section id="work" :class="workSectionClass" ref="workSection">
     <div class="max-w-[95%] mx-auto px-2 mb-2">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-0">
         <NuxtLink 
@@ -111,6 +111,13 @@ const projects = [
 ];
 
 const workSection = ref<HTMLElement | null>(null);
+
+// Responsive class for work section
+const workSectionClass = ref('pt-8 pb-16 bg-white scroll-mt-24');
+
+function isDesktop() {
+  return window.matchMedia('(min-width: 640px)').matches;
+}
 
 // Simple drawing with explicit management of the clear timer
 function startDrawing(e: MouseEvent) {
@@ -250,22 +257,29 @@ onMounted(() => {
   // Setup header hover listeners after a short delay to ensure DOM is ready
   setTimeout(setupHeaderHoverListeners, 500);
 
-  // Set up Intersection Observer for work section animation
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const section = entry.target as HTMLElement;
-        section.style.opacity = '1';
-        section.style.transform = 'translateY(0)';
-        observer.unobserve(section); // Stop observing once animation is triggered
-      }
-    });
-  }, {
-    threshold: 0.1 // Trigger when 10% of the section is visible
-  });
-
-  if (workSection.value) {
-    observer.observe(workSection.value);
+  if (isDesktop()) {
+    workSectionClass.value = 'pt-8 pb-16 bg-white opacity-0 translate-y-10 transition-all duration-700 ease-out scroll-mt-24';
+    if (workSection.value) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const section = entry.target as HTMLElement;
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+            observer.unobserve(section);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      observer.observe(workSection.value);
+    }
+  } else {
+    workSectionClass.value = 'pt-8 pb-16 bg-white scroll-mt-24';
+    if (workSection.value) {
+      workSection.value.style.opacity = '1';
+      workSection.value.style.transform = 'none';
+    }
   }
 });
 

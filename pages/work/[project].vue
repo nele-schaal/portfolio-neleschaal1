@@ -16,7 +16,7 @@
     <!-- Main content with padding to account for fixed header -->
     <div class="flex-grow max-w-[95%] mx-auto px-2 py-4 sm:py-8 pt-16 sm:pt-24">
       <!-- Project Header -->
-      <div class="mb-8 sm:mb-12">
+      <div class="mb-4 sm:mb-12">
         <h1 class="text-4xl sm:text-6xl font-bold mb-2">{{ project?.title }}</h1>
         <p v-if="project?.subtitle" class="text-2xl sm:text-3xl font-normal">{{ project?.subtitle }}</p>
       </div>
@@ -30,24 +30,24 @@
       <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
         <!-- Metadata Section -->
         <div class="md:col-span-6">
-          <div class="flex flex-col sm:flex-row justify-between gap-4 sm:gap-0">
+          <div class="flex flex-row justify-between gap-4 flex-wrap sm:flex-row sm:gap-0">
             <!-- Team -->
-            <div class="flex-1">
-              <p class="text-base font-medium text-black mb-2">(Team)</p>
+            <div class="flex-1 min-w-[100px]">
+              <p class="text-sm sm:text-base font-medium text-black mb-2">(Team)</p>
               <div v-if="project?.team" class="space-y-1">
                 <p v-for="member in project?.team" :key="member" class="text-sm sm:text-base">{{ member }}</p>
               </div>
             </div>
 
             <!-- Duration -->
-            <div class="flex-1">
-              <p class="text-base font-medium text-black mb-2">(Duration)</p>
+            <div class="flex-1 min-w-[100px]">
+              <p class="text-sm sm:text-base font-medium text-black mb-2">(Duration)</p>
               <p v-if="project?.time" class="text-sm sm:text-base">{{ project?.time }}</p>
             </div>
 
             <!-- Topic -->
-            <div class="flex-1">
-              <p class="text-base font-medium text-black mb-2">(Topic)</p>
+            <div class="flex-1 min-w-[100px]">
+              <p class="text-sm sm:text-base font-medium text-black mb-2">(Topic)</p>
               <div v-if="project?.topic" class="space-y-1">
                 <p v-for="item in project?.topic" :key="item" class="text-sm sm:text-base">{{ item }}</p>
               </div>
@@ -62,12 +62,12 @@
       </div>
 
       <!-- INCREASED GAP BELOW THIS LINE ONLY FOR FIRST SECTION -->
-      <div class="mt-24 sm:mt-40"></div>
+      <div class="mt-8 sm:mt-32"></div>
 
       <!-- Alex-specific content -->
       <template v-if="projectSlug === 'alex'">
         <!-- Emotions Grid -->
-        <div v-if="project?.emotions" class="mt-0 mb-32 sm:mb-48">
+        <div v-if="project?.emotions" class="mt-0 mb-32 sm:mb-48 hidden sm:block">
           <!-- Top row: first 3 emotions -->
           <div class="flex flex-col sm:flex-row mb-8 gap-8 sm:gap-0">
             <div 
@@ -171,7 +171,7 @@
         </div>
 
         <!-- Research Section -->
-        <div class="mb-16 sm:mb-24">
+        <div class="mb-8 sm:mb-24">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Research</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <p class="text-lg sm:text-xl leading-relaxed">Through an expert interview with a psychologist who specializes in alexithymia, we found out that therapy for those affected is primarily about imparting emotional knowledge and gradually approaching one's own feelings.</p>
@@ -179,7 +179,7 @@
         </div>
 
         <!-- Three Stages Section -->
-        <div class="mb-16 sm:mb-24 mt-48">
+        <div class="mb-8 sm:mb-24 mt-24 sm:mt-48">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Three Stages</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <p class="text-lg sm:text-xl leading-relaxed">That is why alex introduces users to the conscious perception and allocation of their emotions in three successive stages. Each stage requires more initiative and promotes the ability to recognize and understand one's own emotional state.</p>
@@ -187,7 +187,7 @@
         </div>
 
         <!-- Stage One Section -->
-        <div class="mb-16 sm:mb-24">
+        <div class="mb-8 sm:mb-24">
           <h2 class="text-xl sm:text-2xl font-medium mb-4">(1)</h2>
           <div class="w-full">
             <!-- Image and Video Grid -->
@@ -200,8 +200,8 @@
                   class="w-full h-auto rounded-lg"
                 />
               </div>
-              <!-- Right: Autoplay Video -->
-              <div>
+              <!-- Right: Autoplay Video (desktop only) -->
+              <div class="hidden sm:block">
                 <video 
                   :src="videoeinsVideo"
                   class="w-full h-auto rounded-lg"
@@ -220,7 +220,7 @@
         </div>
 
         <!-- Stage Two Section -->
-        <div class="mb-16 sm:mb-24">
+        <div class="mb-8 sm:mb-24">
           <h2 class="text-xl sm:text-2xl font-medium mb-4">(2)</h2>
           <div class="w-full">
             <!-- Image and Video Grid -->
@@ -233,8 +233,8 @@
                   class="w-full h-auto rounded-lg"
                 />
               </div>
-              <!-- Right: Autoplay Video -->
-              <div>
+              <!-- Right: Autoplay Video (desktop only) -->
+              <div class="hidden sm:block">
                 <video 
                   :src="videozweiVideo"
                   class="w-full h-auto rounded-lg"
@@ -253,7 +253,7 @@
         </div>
 
         <!-- Stage Three Section -->
-        <div class="mb-16 sm:mb-24">
+        <div class="mb-8 sm:mb-24">
           <h2 class="text-xl sm:text-2xl font-medium mb-4">(3)</h2>
           <div class="w-full">
             <!-- Image and Video Grid -->
@@ -266,8 +266,8 @@
                   class="w-full h-auto rounded-lg"
                 />
               </div>
-              <!-- Right: Autoplay Video -->
-              <div>
+              <!-- Right: Autoplay Video (desktop only) -->
+              <div class="hidden sm:block">
                 <video 
                   :src="videodreiVideo"
                   class="w-full h-auto rounded-lg"
@@ -287,7 +287,7 @@
         </div>
 
         <!-- Home Screen Section -->
-        <div class="mb-16 sm:mb-24 mt-48">
+        <div class="mb-8 sm:mb-24 mt-24 sm:mt-48">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Home Screen</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <p class="text-lg sm:text-xl leading-relaxed">On the home screen of the smartphone, the user always sees the currently measured emotion, together with any physical sensations that may occur as a result, as well as the change in biophysiological values in the body, regardless of which stage they are in.</p>
@@ -300,7 +300,7 @@
         </div>
 
         <!-- Insights Page Section -->
-        <div class="mb-16 sm:mb-24 mt-48">
+        <div class="mb-8 sm:mb-24 mt-24 sm:mt-48">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Insights Page</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <p class="text-lg sm:text-xl leading-relaxed">In the app on the smartphone, there is an Insights page for stages 2 and 3 that provides insights into the user's self-assessment. Here there are statistics and overviews that provide information about the process or progress of the self-assessment. These insights can be taken into therapy and viewed together with a therapist so that they can also gain an insight into the real emotional world of the person concerned and see where there are still difficulties in understanding their own emotions and what is already working well.</p>
@@ -333,9 +333,9 @@
       <!-- Pulse-specific content -->
       <template v-if="projectSlug === 'pulse'">
         <!-- INCREASED GAP BELOW THIS LINE ONLY FOR FIRST SECTION -->
-        <div class="mt-32"></div>
+        <div class="mt-8 sm:mt-32"></div>
         <!-- Research Section -->
-        <div class="mt-32 mb-16 sm:mb-24">
+        <div class="mt-8 sm:mb-24">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Research</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <p class="text-lg sm:text-xl leading-relaxed">{{ project?.research }}</p>
@@ -343,57 +343,56 @@
         </div>
 
         <!-- Prototype Section -->
-        <div class="mb-16 sm:mb-24 mt-48">
+        <div class="mb-8 sm:mb-24 mt-24 sm:mt-48">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Prototype</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <p class="text-lg sm:text-xl leading-relaxed">{{ project?.prototype }}</p>
           </div>
 
           <!-- Style Guide Images Grid -->
-          <div class="mt-12 flex gap-6">
-            <!-- Left Column -->
-            <div class="flex flex-col gap-6 w-[550px] flex-shrink-0">
-              <!-- Logo -->
-              <div class="w-full">
+          <div class="mt-12 flex flex-col lg:flex-row gap-6 items-center lg:items-start">
+            <!-- All images stacked and smaller on mobile, row and full size on desktop -->
+            <div class="flex flex-col lg:flex-row gap-6 w-full">
+              <div class="flex flex-col gap-6 w-full lg:w-[550px] flex-shrink-0">
+                <!-- Logo -->
+                <div class="w-full flex justify-center lg:justify-start">
+                  <img 
+                    :src="logoPulseImage" 
+                    alt="Pulse Logo" 
+                    class="w-full max-w-sm lg:max-w-full h-auto"
+                  />
+                </div>
+                <!-- Color Palette -->
+                <div class="w-full flex justify-center lg:justify-start">
+                  <img 
+                    :src="farbePulseImage" 
+                    alt="Pulse Color Palette" 
+                    class="w-full max-w-sm lg:max-w-full h-auto"
+                  />
+                </div>
+                <!-- Typography -->
+                <div class="w-full flex justify-center lg:justify-start">
+                  <img 
+                    :src="fontPulseImage" 
+                    alt="Pulse Typography" 
+                    class="w-full max-w-sm lg:max-w-full h-auto"
+                  />
+                </div>
+              </div>
+              <!-- Components image -->
+              <div class="w-full lg:flex-1 min-w-0 flex justify-center lg:justify-start">
                 <img 
-                  :src="logoPulseImage" 
-                  alt="Pulse Logo" 
-                  class="w-full h-auto"
+                  :src="componentsPulseImage" 
+                  alt="Pulse Components" 
+                  class="w-full max-w-sm lg:max-w-full h-auto rounded-lg"
                 />
               </div>
-              
-              <!-- Color Palette -->
-              <div class="w-full">
-                <img 
-                  :src="farbePulseImage" 
-                  alt="Pulse Color Palette" 
-                  class="w-full h-auto"
-                />
-              </div>
-              
-              <!-- Typography -->
-              <div class="w-full">
-                <img 
-                  :src="fontPulseImage" 
-                  alt="Pulse Typography" 
-                  class="w-full h-auto"
-                />
-              </div>
-            </div>
-            
-            <!-- Right Column - Components -->
-            <div class="flex-1 min-w-0">
-              <img 
-                :src="componentsPulseImage" 
-                alt="Pulse Components" 
-                class="w-full h-auto rounded-lg"
-              />
             </div>
           </div>
         </div>
 
         <!-- Available Appointments Section -->
-        <div class="mb-16 sm:mb-24 mt-48">
+        <div class="mb-8 sm:mb-24 mt-24 sm:mt-48">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Available Appointments</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <p class="text-lg sm:text-xl leading-relaxed">Users are presented with a clear overview of currently available blood donation appointments in their area, including key details such as date, time, number of participants, location, distance, and which friends are attending.</p>
@@ -409,7 +408,7 @@
         </div>
 
         <!-- Challenge Function Section -->
-        <div class="mb-16 sm:mb-24 mt-48">
+        <div class="mb-8 sm:mb-24 mt-24 sm:mt-48">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Challenge Function</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <p class="text-lg sm:text-xl leading-relaxed">Pulse features a challenge function that fosters friendly competition and encourages users to donate blood. Teams can compete to see who donates the most, boosting motivation and strengthening the sense of community. Additionally, this feature offers companies an appealing way to showcase their social responsibility in a visible and engaging manner.</p>
@@ -422,7 +421,7 @@
         </div>
 
         <!-- Donation History Section -->
-        <div class="mb-16 sm:mb-24 mt-48">
+        <div class="mb-8 sm:mb-24 mt-24 sm:mt-48">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Donation History</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <p class="text-lg sm:text-xl leading-relaxed">The donation history displays the user's upcoming donation appointment, if one has been scheduled, followed by a list of past appointments. By clicking on any appointment, users can view an overview of the personal data recorded at the time, along with their health metrics and blood test results.</p>
@@ -435,7 +434,7 @@
         </div>
 
         <!-- Profile Section -->
-        <div class="mb-16 sm:mb-24 mt-48">
+        <div class="mb-8 sm:mb-24 mt-24 sm:mt-48">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Profile</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <p class="text-lg sm:text-xl leading-relaxed">The profile page gives users meaningful insights into their impact in 2025, such as how many times they've donated, how many people they've potentially helped, and the total amount of blood they've given. These personal stats are designed to create an emotional connection to the cause. Below that, users can access key features like donation location management, their friends list, and their digital donor card.</p>
@@ -452,7 +451,7 @@
       </template>
 
       <!-- Functions Section -->
-      <div v-if="project?.functions && projectSlug !== 'sense' && projectSlug !== 'pulse'" class="mb-16 sm:mb-24">
+      <div v-if="project?.functions && projectSlug !== 'sense' && projectSlug !== 'pulse'" class="mb-8 sm:mb-24">
         <div class="flex flex-col md:flex-row md:gap-32 lg:gap-40 mb-12">
           <h2 class="text-xl sm:text-2xl font-normal md:w-[150px] lg:w-[200px] md:flex-shrink-0 mb-4 md:mb-0">Functions</h2>
           <p class="text-base sm:text-lg leading-relaxed max-w-2xl">{{ project?.functions }}</p>
@@ -474,7 +473,7 @@
       </div>
 
       <!-- Challenge Section -->
-      <div v-if="project?.challenge && projectSlug !== 'pulse'" class="mb-16 sm:mb-24">
+      <div v-if="project?.challenge && projectSlug !== 'pulse'" class="mb-8 sm:mb-24">
         <div class="flex flex-col md:flex-row gap-8 items-start">
           <!-- Challenge Image - Left side on desktop -->
           <div v-if="project?.challengeImage" class="md:w-1/2 rounded-lg overflow-hidden">
@@ -489,7 +488,7 @@
       </div>
 
       <!-- Donation History Section -->
-      <div v-if="project?.donationHistory && projectSlug !== 'pulse'" class="mb-16 sm:mb-24">
+      <div v-if="project?.donationHistory && projectSlug !== 'pulse'" class="mb-8 sm:mb-24">
         <div class="flex flex-col md:flex-row-reverse gap-8 items-start">
           <!-- Donation History Image - Right side on desktop -->
           <div v-if="project?.donationHistoryImage" class="md:w-1/2 rounded-lg overflow-hidden">
@@ -506,9 +505,9 @@
       <!-- Sense-specific content -->
       <template v-if="projectSlug === 'sense'">
         <!-- INCREASED GAP BELOW THIS LINE ONLY FOR FIRST SECTION -->
-        <div class="mt-32"></div>
+        <div class="mt-8 sm:mt-32"></div>
         <!-- Real-time data Section -->
-        <div class="mt-32 mb-8">
+        <div class="mt-8 sm:mb-8">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Real-time data</h2>
           <div class="w-full">
             <!-- Text Below -->
@@ -519,7 +518,7 @@
         </div>
 
         <!-- Measurement Section -->
-        <div class="mb-16">
+        <div class="mb-8 sm:mb-24">
           <div class="w-full">
             <!-- Text Below -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -529,7 +528,7 @@
         </div>
 
         <!-- Images Grid -->
-        <div class="mb-16 sm:mb-24">
+        <div class="mb-8 sm:mb-24">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-48">
             <!-- Left Image -->
             <div>
@@ -551,7 +550,7 @@
         </div>
 
         <!-- Emergency function Section -->
-        <div class="mb-8">
+        <div class="mb-8 sm:mb-24">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Emergency function</h2>
           <div class="w-full">
             <!-- Text Below -->
@@ -562,7 +561,7 @@
         </div>
 
         <!-- Emergency function Image -->
-        <div class="mb-16 sm:mb-24 mb-48">
+        <div class="mb-8 sm:mb-24 mb-48">
           <img 
             :src="notfallfunktionImage" 
             alt="Emergency Function Illustration" 
@@ -571,7 +570,7 @@
         </div>
 
         <!-- App Section -->
-        <div class="mb-8 mt-48">
+        <div class="mb-8 sm:mb-24 mt-24 sm:mt-48">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">App</h2>
           <div class="w-full">
             <!-- Text Below -->
@@ -582,7 +581,7 @@
         </div>
 
         <!-- App Image -->
-        <div class="mb-16 sm:mb-24">
+        <div class="mb-8 sm:mb-24">
           <img 
             :src="belastungImage" 
             alt="App Interface" 
@@ -591,7 +590,7 @@
         </div>
 
         <!-- Usability Testing Section -->
-        <div class="mb-8 mt-48">
+        <div class="mb-8 sm:mb-24 mt-24 sm:mt-48">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Usability Testing</h2>
           <div class="w-full">
             <!-- Text Below -->
@@ -602,7 +601,7 @@
         </div>
 
         <!-- Community Section -->
-        <div class="mb-8 mt-48">
+        <div class="mb-8 sm:mb-24 mt-24 sm:mt-48">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Community</h2>
           <div class="w-full">
             <!-- Text Below -->
@@ -613,7 +612,7 @@
         </div>
 
         <!-- Community Map Image -->
-        <div class="mb-16 sm:mb-24">
+        <div class="mb-8 sm:mb-24">
           <img 
             :src="mapSenseImage" 
             alt="Sense Community Map" 
@@ -625,9 +624,9 @@
       <!-- Sound Plotter content -->
       <template v-if="projectSlug === 'sound plotter'">
         <!-- INCREASED GAP BELOW THIS LINE ONLY FOR FIRST SECTION -->
-        <div class="mt-32"></div>
+        <div class="mt-8 sm:mt-32"></div>
         <!-- Components Section -->
-        <div class="mt-32 mb-16 sm:mb-24">
+        <div class="mt-8 sm:mb-24">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Components</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <p class="text-lg sm:text-xl leading-relaxed">To build our device, we used an Arduino Uno R3, a Base Shield, a stepper motor driver, two stepper motors, a potentiometer, a button and an LCD display. The housing is made of laser-cut and hand-sawn wooden components that provide structural support and hold all parts in place.</p>
@@ -635,12 +634,12 @@
           <img 
             :src="componentsPlotterImage" 
             alt="Sound Plotter Components" 
-            class="w-full h-auto rounded-lg mb-48" 
+            class="w-full h-auto rounded-lg mb-8 sm:mb-48" 
           />
         </div>
 
         <!-- Functionality Section -->
-        <div class="mb-16 sm:mb-24">
+        <div class="mb-8 sm:mb-24">
           <h2 class="text-xl sm:text-3xl font-medium mb-4">Functionality</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <p class="text-lg sm:text-xl leading-relaxed">An MP3 file is loaded into Processing and played while an FFT (Fast Fourier Transform) analysis is used to break down the music into its frequency spectrum. From this, the most dominant frequency is calculated and sent to the Arduino. At the same time, a potentiometer provides input that the Arduino reads and sends back to Processing, allowing the music's frequency output to be adjusted dynamically in real time.</p>
@@ -653,7 +652,7 @@
         </div>
 
         <!-- Motor Control Section -->
-        <div class="mb-16 sm:mb-24">
+        <div class="mb-8 sm:mb-24">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <p class="text-lg sm:text-xl leading-relaxed">On the Arduino side, the incoming frequency values are translated into precise movements of two stepper motors. One motor controls the vertical motion of a pen, raising and lowering it in response to the frequency data, while the second motor steadily moves the paper forward. Together, they produce a continuous line drawing that visually represents the sound.</p>
           </div>
@@ -665,7 +664,7 @@
         </div>
 
         <!-- Interactive Control Section -->
-        <div class="mb-16 sm:mb-24">
+        <div class="mb-8 sm:mb-24">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <p class="text-lg sm:text-xl leading-relaxed">An LCD display shows the current song title as scrolling text, we chose Girls Just Want to Have Fun by Cyndi Lauper, and a button allows users to start or stop the motorized drawing process, giving control over playback and plotting.
             <br><br>

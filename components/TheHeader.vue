@@ -41,7 +41,7 @@
       </div>
       <transition name="fade">
         <div v-if="showMobileNav" class="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center space-y-8 text-2xl">
-          <NuxtLink to="/" @click.native="showMobileNav = false">work</NuxtLink>
+          <button @click="navigateToWorkMobile" class="focus:outline-none">work</button>
           <NuxtLink to="/about" @click.native="showMobileNav = false">about</NuxtLink>
           <a href="mailto:nele.schaal@hfg-gmuend.de" @click.native="showMobileNav = false">contact me</a>
           <button @click="showMobileNav = false" class="absolute top-6 right-6 text-3xl">&times;</button>
@@ -98,6 +98,20 @@ async function navigateToWork(event: Event) {
     // Wait for the next DOM update cycle
     await nextTick();
     // Add a small delay to ensure the section is mounted
+    await new Promise(resolve => setTimeout(resolve, 100));
+  }
+  const workSection = document.getElementById('work');
+  if (workSection) {
+    workSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// Mobile: Scroll to work section or navigate home and scroll
+async function navigateToWorkMobile() {
+  showMobileNav.value = false;
+  if (route.path !== '/') {
+    await router.push('/');
+    await nextTick();
     await new Promise(resolve => setTimeout(resolve, 100));
   }
   const workSection = document.getElementById('work');
