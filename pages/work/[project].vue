@@ -751,7 +751,7 @@ import videodreiVideo from '~/assets/alex/videodrei.mp4';
 import startseiteImage from '~/assets/alex/Startseite.png';
 import insights1Video from '~/assets/alex/Insights1.mp4';
 import insights2Video from '~/assets/alex/Insights2.mp4';
-import senseImage from '~/assets/sense/sense.png';
+import senseImage from '~/assets/sense/sense.jpg';
 import buttonSenseImage from '~/assets/sense/button-sense.jpg';
 import schlitzSenseImage from '~/assets/sense/schlitz-sense.jpg';
 import notfallfunktionImage from '~/assets/sense/notfallfunktion.png';
