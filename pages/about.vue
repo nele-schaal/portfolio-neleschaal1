@@ -19,13 +19,13 @@
               <h1 class="text-3xl sm:text-4xl font-semibold mb-2">Hi, I am Nele!</h1><br />
               <!-- Desktop text (shown on sm and up) -->
               <p class="text-base sm:text-lg hidden sm:block">
-                I'm an Interaction Design student at the University of Applied<br />Sciences in Schwäbisch Gmünd and currently looking for an <br /> internship.<br /><br />
-                Driven by curiosity and a deep interest in how humans and <br />technology connect, I enjoy bringing new ideas to life through <br /> thoughtful concepts and hands-on prototypes.<br>
+                I'm an Interaction Design student at the University of Applied<br />Sciences in Schwäbisch Gmünd and currently completing my <br /> Erasmus semester at the Estonian Academy of Arts in Estonia. <br /><br />
+                Driven by curiosity and a deep interest in how humans and <br />technology connect, I enjoy bringing new ideas to life through <br /> thoughtful concepts and hands-on prototypes. <br>
                 I find inspiration in nature, conversations, books, and everyday <br />interactions, and I love diving deep into topics and exploring how <br /> we can shape the future through the connection of technology <br /> and design, creating meaningful, user-centered solutions that <br />respond to real needs.
               </p>
               <!-- Mobile text (shown only on mobile) -->
               <p class="text-base sm:text-lg block sm:hidden">
-                I'm an Interaction Design student at <br />the University of Applied Sciences<br />in Schwäbisch Gmünd and currently<br /> looking for an internship.<br /><br />
+                I'm an Interaction Design student at <br />the University of Applied Sciences<br />in Schwäbisch Gmünd and currently completing my <br /> Erasmus semester at the Estonian Academy of Arts in Estonia. <br /><br />
                 Driven by curiosity and a deep interest<br /> in how humans and technology connect,<br />I enjoy bringing new ideas to life through thoughtful concepts and hands-on prototypes.<br><br />
                 I find inspiration in nature, conversations, books, and everyday interactions,<br />and I love diving deep into topics and exploring how we can shape the future through the connection of technology and design, creating meaningful, user-centered solutions that respond to real needs.
               </p>
